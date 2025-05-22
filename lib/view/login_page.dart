@@ -38,7 +38,7 @@ class _LoginPageState extends State<LoginPage> {
             end: Alignment.bottomCenter,
           ),
         ),
-        padding: EdgeInsets.symmetric(horizontal: 2),
+        padding: EdgeInsets.symmetric(horizontal: 20),
         //contenedor principal
         child: Center(
           child: SingleChildScrollView(
@@ -60,7 +60,69 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
                     validator: loginController.validarUsuario,
-                  )
+                  ),
+                  SizedBox(height: 20,),
+                  TextFormField(
+                    controller: passwordController,
+                    style: AppTextStyles.input,
+                    decoration: InputDecoration(
+                      prefixIcon: Icon(Icons.lock,color: Colors.white,),
+                      hintText: 'Password',
+                      hintStyle: TextStyle(color: Colors.white),
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white),
+                      ),
+                    ),
+                    validator: loginController.validarPassword,
+                    obscureText: true,
+                  ),
+                  SizedBox(height: 20,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          Checkbox(
+                            value: rememberMe,
+                            onChanged: (value) {
+                              setState(() {
+                                rememberMe = value!;
+                              });
+                            },
+                          ),
+                          Text('Remember Me',style: AppTextStyles.input,),
+                        ],
+                      ),
+                      TextButton(
+                        onPressed: () {},
+                        child: Text('Forgot Password?',style: AppTextStyles.input,),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 20,),
+                  ElevatedButton(
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {
+                        //llamar al metodo de la clase controller
+                        loginController.iniciarSesion(
+                          context,
+                          userController.text,
+                          passwordController.text,
+                        );
+                      }
+                    },
+                    child: Text('Login',style: AppTextStyles.button,),
+                    style: AppButtonStyles.primary,
+                  ),
+                  SizedBox(height: 20,),
+                  Text('Not a member?',style: AppTextStyles.input,),
+                  OutlinedButton(
+                    onPressed: () {
+                      //codigo de registro
+                    },
+                    child: Text('Register',style: AppTextStyles.button,),
+                    style: AppButtonStyles.outline,
+                  ),
                 ],
               ),
             ),

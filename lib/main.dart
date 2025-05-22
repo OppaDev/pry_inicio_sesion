@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pry_inicio_sesion/view/login_page.dart';
 import './themes/app_themes.dart';
 
 
@@ -7,10 +8,8 @@ void main() {
     title: 'Iniciar Sesion',
     initialRoute: '/',
     routes: {
+      '/': (context) => LoginPage(),
     },
-    theme: ThemeData(
-      primarySwatch: Colors.blue,
-    ),
     theme: AppThemes.lightTheme,
     debugShowCheckedModeBanner: false,
   ));
