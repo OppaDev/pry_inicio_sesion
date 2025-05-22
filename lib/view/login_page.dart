@@ -118,7 +118,7 @@ class _LoginPageState extends State<LoginPage> {
                   Text('Not a member?',style: AppTextStyles.input,),
                   OutlinedButton(
                     onPressed: () {
-                      //codigo de registro
+                      Navigator.pushNamed(context, '/registro');
                     },
                     child: Text('Register',style: AppTextStyles.button,),
                     style: AppButtonStyles.outline,
