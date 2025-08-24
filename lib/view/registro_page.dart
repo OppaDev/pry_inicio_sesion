@@ -31,7 +31,10 @@ class _RegistroPageState extends State<RegistroPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Registro', style: TextStyle(color: Colors.white)),
+        title: const Text(
+          'Registro',
+          style: TextStyle(color: Colors.purpleAccent),
+        ),
         backgroundColor: Colors.white,
       ),
       body: Container(
@@ -180,6 +183,7 @@ class _RegistroPageState extends State<RegistroPage> {
                   TextFormField(
                     controller: telefonoController,
                     style: AppTextStyles.input,
+                    keyboardType: TextInputType.phone,
                     decoration: InputDecoration(
                       prefixIcon: Icon(Icons.phone, color: Colors.white),
                       hintText: 'Teléfono',
@@ -194,6 +198,7 @@ class _RegistroPageState extends State<RegistroPage> {
                   TextFormField(
                     controller: codigoPostalController,
                     style: AppTextStyles.input,
+                    keyboardType: TextInputType.number,
                     decoration: InputDecoration(
                       prefixIcon: Icon(
                         Icons.local_post_office,
@@ -243,9 +248,23 @@ class _RegistroPageState extends State<RegistroPage> {
                           provinciaController.text,
                           emailController.text,
                           telefonoController.text,
-                          codigoPostalController
-                              .text,
+                          codigoPostalController.text,
                         );
+
+                        // Limpiar el formulario
+                        userController.clear();
+                        passwordController.clear();
+                        nombreController.clear();
+                        apellidoController.clear();
+                        ciudadController.clear();
+                        provinciaController.clear();
+                        emailController.clear();
+                        telefonoController.clear();
+                        codigoPostalController.clear();
+
+                        setState(() {
+                          terminosCondiciones = false;
+                        });
                       } else if (!terminosCondiciones) {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
